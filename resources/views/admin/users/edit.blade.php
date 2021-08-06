@@ -55,12 +55,12 @@
 
                         <br>
                         <hr>
+                        @can('delete-users')
                         <div class="float-right">
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                 data-target="#myModal">Delete User</button>
-
-
                         </div>
+                        @endcan
                     </div>
                     <!-- The Modal -->
                     <div class="modal fade" id="myModal">
@@ -87,7 +87,6 @@
                                         <button type="submit" class="btn btn-danger" >Delete</button>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>

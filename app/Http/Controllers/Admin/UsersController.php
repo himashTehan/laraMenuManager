@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
@@ -96,6 +97,10 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        if(Gate::denies('edit-users')){
+            abort(403);
+        }
+
         $user->roles()->sync($request->roles);
         $user->email = $request->email;
         $user->save();
