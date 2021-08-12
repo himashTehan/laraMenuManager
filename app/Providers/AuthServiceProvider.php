@@ -37,6 +37,11 @@ class AuthServiceProvider extends ServiceProvider
         //route-access
         Gate::define('manage-users', function($user){
             return $user->hasAnyRoles(['admin','manager']);
+        });        
+        
+        //route-access
+        Gate::define('manage-menus', function($user){
+            return $user->hasAnyRoles(['manager']);
         });
         
     }

@@ -30,7 +30,7 @@ class MenuSeeder extends Seeder
         $appetizerMenu = Menu::create([
             'name' => $faker->foodName(),
             'description' => $faker->text($maxNbChars = 200),
-            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1000),
+            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $faker->numberBetween($min = 600, $max = 100)),
             'image' => $faker->imageUrl($width = 640, $height = 480),
             'active' => $faker->boolean($chanceOfGettingTrue = 50),
         ]);        
@@ -38,7 +38,7 @@ class MenuSeeder extends Seeder
         $mainMenu = Menu::create([
             'name' => $faker->foodName(),
             'description' => $faker->text($maxNbChars = 200),
-            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 3500),
+            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $faker->numberBetween($min = 1500, $max = 3500)),
             'image' => $faker->imageUrl($width = 640, $height = 480),
             'active' => $faker->boolean($chanceOfGettingTrue = 50),
         ]);        
@@ -46,7 +46,7 @@ class MenuSeeder extends Seeder
         $dessertMenu = Menu::create([
             'name' => $faker->foodName(),
             'description' => $faker->text($maxNbChars = 200),
-            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1000),
+            'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $faker->numberBetween($min = 300, $max = 1500)),
             'image' => $faker->imageUrl($width = 640, $height = 480),
             'active' => $faker->boolean($chanceOfGettingTrue = 50),
         ]);

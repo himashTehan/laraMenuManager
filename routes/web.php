@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\ProductsControler;
+use App\Http\Controllers\Menu\CategoryController;
+use App\Http\Controllers\Menu\MenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,9 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
     Route::resource('/users', UsersController::class)->name('*', 'users');
 });  
 
-Route::resource('/products', ProductsControler::class);
-
+Route::prefix('manage')->name('menu.')->middleware(['auth','can:manage-menus'])->group(function () {
+    Route::resource('/menus', MenuController::class)->name('*', 'menus');
+    Route::resource('/category', CategoryController::class)->name('*', 'category');
+}); 
 
 

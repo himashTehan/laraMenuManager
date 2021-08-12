@@ -68,6 +68,13 @@
                                         {{ __('Manage Users') }}
                                     </a>
                                 @endif
+                                    @endcan                                    
+                                    @can('manage-menus')
+                                    @if (!Route::is('menu.menus.*'))
+                                    <a class="dropdown-item" href="{{ route('menu.menus.index') }}">
+                                        {{ __('Manage Menu') }}
+                                    </a>
+                                @endif
                                     @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

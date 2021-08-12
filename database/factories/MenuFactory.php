@@ -28,7 +28,7 @@ class MenuFactory extends Factory
             //
             'name' => $this->faker->foodName(),
             'description' => $this->faker->text($maxNbChars = 200),
-            'price' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = NULL),
+            'price' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $this->faker->numberBetween($min = 500, $max = 3500)),
             'image' => $this->faker->imageUrl($width = 640, $height = 480),
             'active' => $this->faker->boolean($chanceOfGettingTrue = 50),
         ];

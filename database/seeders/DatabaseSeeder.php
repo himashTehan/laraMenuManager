@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
         // $this->call(RoleSeeder::class);
         // $this->call(UserSeeder::class);
         // $this->call(CategorySeeder::class);
-        $this->call(MenuSeeder::class);
+
+        // $this->call(MenuSeeder::class);
+        \App\Models\Menu::factory(30)->create();
+
+
     }
 }
