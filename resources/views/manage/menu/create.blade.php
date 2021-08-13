@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="form-group col">
-                                <label for="email" class="col-md-6 col-form-label text-md-left">Name</label>
+                                <label for="email" class="col-md-6 col-form-label text-md-left">Name<span class="text-danger"> *</span></label>
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
                                         value="{{ old('name') }}" autofocus @error('name') is-invalid @enderror">
@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="form-group col">
-                                <label for="price" class="col-md-6 col-form-label text-md-left">Price</label>
+                                <label for="price" class="col-md-6 col-form-label text-md-left">Price<span class="text-danger"> *</span></label>
                                 <div class="col-md-6">
                                     <input id="price" type="number" step="0.01" class="form-control" name="price" min=0
                                         value="{{ old('price') }}" required autofocus>
@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group col">
-                                <label for="category" class="col-md-6 col-form-label text-md-left">Category</label>
+                                <label for="category" class="col-md-6 col-form-label text-md-left">Category<span class="text-danger"> *</span></label>
                                 <div class="col-md-6">
                                     <select name="category" id="category" class="custom-select" @error('category') is-invalid @enderror">
                                         <option value="">Select One</option>

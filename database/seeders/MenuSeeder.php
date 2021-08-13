@@ -27,7 +27,7 @@ class MenuSeeder extends Seeder
         $dessertCategory = Category::where('name', 'dessert')->first();
 
         //create a menu for appetizer
-        $appetizerMenu = Menu::create([
+        $appetizerCategory->menu()->create([
             'name' => $faker->foodName(),
             'description' => $faker->text($maxNbChars = 200),
             'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $faker->numberBetween($min = 600, $max = 100)),
@@ -35,7 +35,7 @@ class MenuSeeder extends Seeder
             'active' => $faker->boolean($chanceOfGettingTrue = 50),
         ]);        
         
-        $mainMenu = Menu::create([
+        $mainCategory->menu()->create([
             'name' => $faker->foodName(),
             'description' => $faker->text($maxNbChars = 200),
             'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $faker->numberBetween($min = 1500, $max = 3500)),
@@ -43,7 +43,7 @@ class MenuSeeder extends Seeder
             'active' => $faker->boolean($chanceOfGettingTrue = 50),
         ]);        
         
-        $dessertMenu = Menu::create([
+        $dessertCategory->menu()->create([
             'name' => $faker->foodName(),
             'description' => $faker->text($maxNbChars = 200),
             'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = $faker->numberBetween($min = 300, $max = 1500)),
@@ -51,8 +51,7 @@ class MenuSeeder extends Seeder
             'active' => $faker->boolean($chanceOfGettingTrue = 50),
         ]);
 
-        $appetizerMenu->category()->attach($appetizerCategory);
-        $mainMenu->category()->attach($mainCategory);
-        $dessertMenu->category()->attach($dessertCategory);
+
+
     }
 }

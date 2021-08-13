@@ -20,8 +20,10 @@ class CreateMenuTable extends Migration
             $table->double('price');
             $table->string('image');
             $table->boolean('active');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -31,6 +33,6 @@ class CreateMenuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('menu');
     }
 }

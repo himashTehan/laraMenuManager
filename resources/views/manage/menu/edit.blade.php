@@ -9,6 +9,8 @@
                         <span class="font-weight-bold">
                             {{ $menu->name }}
                         </span>
+                            <button type="button" class="btn btn-outline-danger btn-sm float-right" data-toggle="modal"
+                                data-target="#myModal">Remove</button>
                     </div>
 
                     <div class="card-body">
@@ -34,7 +36,22 @@
                                     <input id="price" type="number" step="0.01" class="form-control" name="price"
                                         value="{{ $menu->price }}" required autofocus>
                                 </div>
-                            </div>     
+                            </div>    
+                            
+                            <div class="form-group col">
+                                <label for="category" class="col-md-6 col-form-label text-md-left">Category</label>
+                                <div class="col-md-6">
+                                    <select name="category" id="category" class="custom-select" @error('category') is-invalid @enderror">
+                                        <option value="">Select One</option>
+                                        @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{$category->id == $menu->category_id  ? 'selected' : ''}}>{{ $category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <br>
                             <div class="form-group col">
@@ -43,6 +60,34 @@
                                 </div>
                             </div>
                         </form>
+                    <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Menu</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    Are you sure you want to delete {{ $menu->name }} ?
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <form action="{{ route('menu.menus.destroy', $menu) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Yes</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

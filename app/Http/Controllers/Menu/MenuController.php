@@ -32,7 +32,7 @@ class MenuController extends Controller
     public function create()
     {
         //
-        return view('manage.menu.create')->with(['categories'=>Category::all()]);
+        return view('manage.menu.create')->with(['categories' => Category::all()]);
     }
 
     /**
@@ -52,7 +52,9 @@ class MenuController extends Controller
         ]);
 
         $faker = Factory::Create();
-        $menu = Menu::create([
+        $category = Category::select('id')->where('id', $request->category)->first();
+
+        $category->menu()->create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -60,9 +62,6 @@ class MenuController extends Controller
             'active' => true,
         ]);
 
-        $category = Category::select('id')->where('id', $request->category)->first();
-        $menu->category()->attach($category);
-        
         return redirect()->route('menu.menus.index');
     }
 
@@ -85,7 +84,10 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        return view('manage.menu.edit')->with(['menu'=>$menu]);
+        return view('manage.menu.edit')->with([
+            'menu' => $menu,
+            'categories' => Category::all()
+            ]);
     }
 
     /**
@@ -97,8 +99,18 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'category' => new CategoryRule()
+        ]);
+
+        $selected_category = Category::find($request->category);
+
         $menu->name = $request->name;
         $menu->price = $request->price;
+        if ($selected_category !== null) {
+            $menu->category()->associate($selected_category);
+        }
         $menu->save();
         return redirect()->route('menu.menus.index');
     }
@@ -111,6 +123,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->category()->dissociate();
+        $menu->delete();
+        return redirect()->route('menu.menus.index');
     }
 }

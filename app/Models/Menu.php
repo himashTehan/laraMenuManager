@@ -20,11 +20,12 @@ class Menu extends Model
         'price',
         'image',
         'active',
+        'category_id',
     ];
 
     public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
 }

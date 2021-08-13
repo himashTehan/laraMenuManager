@@ -8,7 +8,7 @@
                     <div class="card-header">
                         {{ __('Manage Menu') }}
                         <a href="{{ route('menu.menus.create') }}">
-                            <button class="btn btn-primary btn-sm float-right">New</button>
+                            <button class="btn btn-success btn-sm float-right">New</button>
                         </a>
                     </div>
 
@@ -36,7 +36,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('menu.menus.edit', $menu) }}">
-                                                <button type="button" class="btn btn-secondary btn-sm">Manage</button>
+                                                <button type="button" class="btn btn-outline-primary btn-sm">Manage</button>
                                             </a>
                                         </td>
                                     </tr>
