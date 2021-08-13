@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Menu;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Menu;
+use App\Rules\CategoryRule;
 use Illuminate\Http\Request;
 use Faker\Factory;
 
@@ -44,6 +45,12 @@ class MenuController extends Controller
     {
         //
         // dd($request);
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'category' => new CategoryRule()
+        ]);
+
         $faker = Factory::Create();
         $menu = Menu::create([
             'name' => $request->name,
