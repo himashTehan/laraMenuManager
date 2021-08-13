@@ -63,22 +63,21 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @can('manage-users')
-                                    @if (!Route::is('admin.users.*'))
-                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">
-                                        {{ __('Manage Users') }}
-                                    </a>
-                                @endif
-                                    @endcan                                    
-                                    @can('manage-menus')
-                                    @if (!Route::is('menu.menus.*'))
-                                    <a class="dropdown-item" href="{{ route('menu.menus.index') }}">
-                                        {{ __('Manage Menu') }}
-                                    </a>
-                                @endif
+                                        @if (!Route::is('admin.users.*'))
+                                            <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                                {{ __('Manage Users') }}
+                                            </a>
+                                        @endif
                                     @endcan
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                    @can('manage-menus')
+                                        @if (!Route::is('menu.menus.*'))
+                                            <a class="dropdown-item" href="{{ route('menu.menus.index') }}">
+                                                {{ __('Manage Menu') }}
+                                            </a>
+                                        @endif
+                                    @endcan
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
