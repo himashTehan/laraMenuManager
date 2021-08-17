@@ -6,7 +6,11 @@
                     @if ($item->active)
                     <div class="card mb-3">
                         <a href={{ route('view.show', $item)}}>
-                            <img src={{ $item->image }} class="card-img-top">
+                            @if (str_contains($item->image, 'via.placeholder.com'))
+                                <img src={{$item->image}} class="card-img-top">
+                            @else
+                                <img src={{ asset('img/' . $item->image) }} class="card-img-top">
+                            @endif
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ $item->name }}</strong></h5>

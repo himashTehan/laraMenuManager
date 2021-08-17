@@ -48,17 +48,22 @@ class MenuController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'category' => new CategoryRule()
+            'category' => new CategoryRule(),
+            'image' => 'required|mimes:jpg,png|max:2048'
         ]);
 
         $faker = Factory::Create();
         $category = Category::select('id')->where('id', $request->category)->first();
 
+        $newImageName = time() .'_'.$request->image->getClientOriginalName();
+        //move image
+        $request->image->move(public_path('img'),$newImageName);
+
         $category->menu()->create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => $faker->imageUrl($width = 640, $height = 480),
+            'image' => $newImageName,
             'active' => true,
         ]);
 
