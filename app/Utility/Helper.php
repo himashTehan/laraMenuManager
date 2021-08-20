@@ -12,5 +12,11 @@ class Helper
             $result += $value;
         }
         return $result;
+    }    
+    
+    public static function getFullName($firstName,$lastName)
+    {
+        $result = $firstName.' '.$lastName;
+        return $result;
     }
 }

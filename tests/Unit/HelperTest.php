@@ -18,7 +18,15 @@ class HelperTest extends TestCase
     {
         $data = [1,2,3]; //Arrange
         $result = Helper::sum($data); //Act
-        $this->assertEquals(6, $result);//Assert
-    }
+        $this->assertEquals(6, $result); //Assert
+    } 
+    
+    public function test_get_full_name()
+    {
+        $firstName = "Himash"; //Arrange
+        $lastName = "Tehan"; //Arrange
+        $result = Helper::getFullName($firstName, $lastName); //Act
+        $this->assertEquals("Himash Tehan", $result); //Assert
+    } 
 
 }

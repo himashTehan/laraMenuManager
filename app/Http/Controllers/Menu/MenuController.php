@@ -44,13 +44,12 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         //
-        // dd($request);
-
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required',
             'category' => new CategoryRule(),
             'image' => 'required|mimes:jpg,png|max:2048'
         ]);
+
 
         $faker = Factory::Create();
         $category = Category::select('id')->where('id', $request->category)->first();
